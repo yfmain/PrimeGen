@@ -1,0 +1,24 @@
+{
+	"name": "fy/prime_number_generator",
+	"version": "1.0.0",
+    "authors": [
+        {
+            "name": "Fu Yu",
+            "email": "yfmain@gmail.com"
+        }
+    ],
+   "require": {
+    	"symfony/dependency-injection": "~2.1|~3.0",
+    	"symfony/expression-language": "~2.1|~3.0",
+    	"symfony/config": "~2.1|~3.0",
+    	"symfony/yaml": "~2.1|~3.0",
+    	"pear/console_table": "1.3.0",
+    	"pear/Console_Color2": ">=0.1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.4.*"
+    },
+    "autoload": {
+    	"psr-4": {"DevSpace\\": "Classlib/"}
+    }
+}
