@@ -13,14 +13,22 @@ class PrimesTest extends TestCase
     {
         $this->subject = new Primes();
     }
-    
-    public function testGetNthPrimeReturnTwoForTheFirst()
+
+    /**
+     * @param $n
+     * @param $expected
+     * @dataProvider TheNthPrimeProvider
+     */
+    public function testGetNthePrimesReturnsCorrectPrimeNumber($n, $expected)
     {
-        $this->assertEquals(2, $this->subject->getTheNthPrime(1));
+        $this->assertEquals($expected, $this->subject->getTheNthPrime($n));
     }
 
-    public function testGetNthPrimeReturnThreeForTheSecond()
+    public function TheNthPrimeProvider()
     {
-        $this->assertEquals(3, $this->subject->getTheNthPrime(2));
+        return array(
+            'the 1st prime is 2'      =>  array(1, 2),
+            'the 2nd prime is 3 '      =>  array(2, 3),
+        );
     }
 }
