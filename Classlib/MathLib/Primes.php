@@ -5,14 +5,14 @@ class Primes
 {
     public function getTheNthPrime($n)
     {
-        $primes = [];
-        $count = 0;
-        $i = 2;
+        $primes = [2];
+        $count = 1;
+        $i = 3;
         while ($count < $n) {
             if ($this->isPrime($i)) {
                 $primes[$count++] = $i;
             }
-            $i++;
+            $i += 2;
         }
         return $primes[$n - 1];
     }
