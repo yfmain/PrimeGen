@@ -33,6 +33,7 @@ class PrimesTest extends TestCase
             'the 4th prime is 7'      =>  array(4, 7),
             'the 5th prime is 11'     =>  array(5, 11),
             'the 6th prime is 13'     =>  array(6, 13),
+            'the 10th prime is 29'    =>  array(10, 29),
         );
     }
 }

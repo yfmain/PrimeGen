@@ -6,10 +6,11 @@ class Primes
     public function getTheNthPrime($n)
     {
         $primes = [];
-
-        for ($i = 2; $i < $n + 10; $i++) {
+        $count = 0;
+        for ($i = 2; $i < $n + 100; $i++) {
             if ($this->isPrime($i)) {
                 $primes[] = $i;
+                if (++$count == $n) break;
             }
         }
         return $primes[$n - 1];
