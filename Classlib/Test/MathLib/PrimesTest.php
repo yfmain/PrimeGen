@@ -14,6 +14,11 @@ class PrimesTest extends TestCase
         $this->subject = new Primes();
     }
 
+    public function testPrimesIsInstanceOfIPrimes()
+    {
+        $this->assertInstanceOf('DevSpace\Interfaces\MathLib\IPrimes', $this->subject);
+    }
+
     /**
      * @param $n
      * @param $expected

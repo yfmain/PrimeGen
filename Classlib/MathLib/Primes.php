@@ -1,16 +1,18 @@
 <?php
 namespace DevSpace\MathLib;
 
-class Primes
+use DevSpace\Interfaces\MathLib\IPrimes;
+
+class Primes implements IPrimes
 {
-    public function primes($n)
+    public function primes($size)
     {
-        if (!$this->isValid($n)) return array();
+        if (!$this->isValid($size)) return array();
 
         $primes = [2];
         $count = 1;
         $i = 3;
-        while ($count < $n) {
+        while ($count < $size) {
             $bound = sqrt($i);
             $prime = 3;
             foreach ($primes as $prime) {
@@ -28,6 +30,6 @@ class Primes
 
     private function isValid($n)
     {
-        return filter_var($n, FILTER_VALIDATE_INT) && $n > 1;
+        return filter_var($n, FILTER_VALIDATE_INT) && $n > 0;
     }
 }
