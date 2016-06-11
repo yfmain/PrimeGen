@@ -5,10 +5,8 @@ class Primes
 {
     public function primes($n)
     {
-        if ($n<1)
-        {
-            return array();
-        }
+        if (!$this->isValid($n)) return array();
+
         $primes = [2];
         $count = 1;
         $i = 3;
@@ -26,5 +24,10 @@ class Primes
             $i += 2;
         }
         return $primes;
+    }
+
+    private function isValid($n)
+    {
+        return filter_var($n, FILTER_VALIDATE_INT) && $n > 1;
     }
 }

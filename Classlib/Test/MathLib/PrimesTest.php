@@ -34,12 +34,12 @@ class PrimesTest extends TestCase
             'the 5th prime is 11'     =>  array(5, 11),
             'the 6th prime is 13'     =>  array(6, 13),
             'the 10th prime is 29'    =>  array(10, 29),
-            "the 100th prime is 541"            => array(100, 541),
-            "the 1Kth  prime is 7,919"          => array(1e3, 7919),
-//            "the 10Kth prime is 104,729"        => array(1e4, 104729),
-//            "the 100Kth prime is 1,299,709"     => array(1e5, 1299709),
-//            "the 1Mth prime is 15,485,863"      => array(1e6, 15485863),
-//            "the 10Mth prime is 179,424,673"    => array(1e7, 179424673)
+            'the 100th prime is 541'            => array(100, 541),
+            'the 1Kth  prime is 7,919'          => array(1e3, 7919),
+//            'the 10Kth prime is 104,729'        => array(1e4, 104729),
+//            'the 100Kth prime is 1,299,709'     => array(1e5, 1299709),
+//            'the 1Mth prime is 15,485,863'      => array(1e6, 15485863),
+//            'the 10Mth prime is 179,424,673'    => array(1e7, 179424673)
         );
     }
     
@@ -51,13 +51,23 @@ class PrimesTest extends TestCase
         );
     }
 
-    public function testPrimesReturnsEmptyWithNullInput()
+    /**
+     * @param mixed $input
+     * @dataProvider InvalidateArgProvider
+     */
+    public function testPrimesReturnEmptyWithValidateInput($input)
     {
-        $this->assertEquals(array(), $this->subject->primes(null));
+        $this->assertEquals(array(), $this->subject->primes($input));
     }
 
-    public function testPrimesReturnsEmptyWithNegativeInput()
+    public function InvalidateArgProvider()
     {
-        $this->assertEquals(array(), $this->subject->primes(-1));
+        return array(
+            'Argument null is invalid'      =>  array(null),
+            'Argument zero is invalid'      =>  array(0),
+            'Argument negative is invalid'  =>  array(-1),
+            'Argument decimal is invalid'   =>  array(3.33),
+            'Argument string is invalid'    =>  array('number')
+        );
     }
 }
