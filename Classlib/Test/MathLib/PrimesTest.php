@@ -19,7 +19,7 @@ class PrimesTest extends TestCase
      * @param $expected
      * @dataProvider TheNthPrimeProvider
      */
-    public function testGetNthePrimesReturnsCorrectPrimeNumber($n, $expected)
+    public function testGetNthPrimesReturnsCorrectPrimeNumber($n, $expected)
     {
         $this->assertEquals($expected, $this->subject->getTheNthPrime($n));
     }
@@ -31,7 +31,8 @@ class PrimesTest extends TestCase
             'the 2nd prime is 3'      =>  array(2, 3),
             'the 3rd prime is 5'      =>  array(3, 5),
             'the 4th prime is 7'      =>  array(4, 7),
-            'the 5th prime is 11 '    =>  array(5, 11),
+            'the 5th prime is 11'     =>  array(5, 11),
+            'the 6th prime is 13'     =>  array(6, 13),
         );
     }
 }
