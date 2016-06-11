@@ -28,9 +28,10 @@ class PrimesTest extends TestCase
     {
         return array(
             'the 1st prime is 2'      =>  array(1, 2),
-            'the 2nd prime is 3 '      =>  array(2, 3),
-            'the 3rd prime is 5 '      =>  array(3, 5),
-            'the 4th prime is 7 '      =>  array(4, 7),
+            'the 2nd prime is 3'      =>  array(2, 3),
+            'the 3rd prime is 5'      =>  array(3, 5),
+            'the 4th prime is 7'      =>  array(4, 7),
+            'the 5th prime is 11 '    =>  array(5, 11),
         );
     }
 }
