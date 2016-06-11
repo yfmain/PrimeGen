@@ -65,9 +65,9 @@ class PrimesTest extends TestCase
         return array(
             'Argument null is invalid'      =>  array(null),
             'Argument zero is invalid'      =>  array(0),
-            'Argument negative is invalid'  =>  array(-1),
-            'Argument decimal is invalid'   =>  array(3.33),
-            'Argument string is invalid'    =>  array('number')
+            'Argument negatives are invalid'  =>  array(-1),
+            'Argument decimals are invalid'   =>  array(3.33),
+            'Argument strings are invalid'    =>  array('number')
         );
     }
 }
