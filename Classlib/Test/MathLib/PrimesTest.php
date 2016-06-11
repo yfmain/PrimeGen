@@ -34,9 +34,10 @@ class PrimesTest extends TestCase
             'the 5th prime is 11'     =>  array(5, 11),
             'the 6th prime is 13'     =>  array(6, 13),
             'the 10th prime is 29'    =>  array(10, 29),
-            "the 100th prime is 541"        => array(100, 541),
-            "the 1Kth  prime is 7,919"      => array(1e3, 7919),
-            "the 10Kth prime is 104,729"    => array(1e4, 104729),
+            "the 100th prime is 541"            => array(100, 541),
+            "the 1Kth  prime is 7,919"          => array(1e3, 7919),
+            "the 10Kth prime is 104,729"        => array(1e4, 104729),
+            "the 100Kth prime is 1,299,709"     => array(1e5, 1299709),
         );
     }
 }

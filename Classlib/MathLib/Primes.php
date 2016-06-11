@@ -9,7 +9,13 @@ class Primes
         $count = 1;
         $i = 3;
         while ($count < $n) {
-            if ($this->isPrime($i)) {
+            $sqrtOfN = floor(sqrt($i));
+            $prime = 3;
+            foreach ($this->primes as $prime) {
+                if ($prime > $sqrtOfN) break;
+                if ($i % $prime == 0) break;
+            }
+            if ($prime > $sqrtOfN) {
                 $this->primes[$count++] = $i;
             }
             $i += 2;
