@@ -1,12 +1,13 @@
 <?php
-namespace DevSpace\MainApp;
+namespace DevSpace\Services;
 
 use DevSpace\Interfaces\Resources\IMessages;
+use DevSpace\Interfaces\Services\IPrimesTable;
 use DevSpace\Interfaces\Validators\INaturalNumber;
 use DevSpace\Interfaces\MathLib\IPrimes;
 use DevSpace\Interfaces\MathLib\ITimesTable;
 
-class PrimesGenerator
+class PrimesTable implements IPrimesTable
 {
     /** @var  IMessages */
     private $messages;
@@ -33,12 +34,12 @@ class PrimesGenerator
         $this->timesTableGenerator = $timesTableGenerator;
     }
 
-    public function run($size = null)
+    public function getPrimesTable($size = null)
     {
         if (!$this->sizeValidator->validate($size)) {
             return $this->messages->getMessage('MSG_PRMGEN_INVALID_INPUT');
         }
-        
+
         return $this->timesTableGenerator->getTable(
             $this->primesGenerator->primes($size)
         );

@@ -1,7 +1,8 @@
 <?php
-namespace DevSpace\Test\MainApp;
+namespace DevSpace\Test\Services;
 
-use DevSpace\MainApp\PrimesGenerator;
+use DevSpace\Services\PrimesTable;
+use DevSpace\Interfaces\Services\IPrimesTable;
 use DevSpace\Interfaces\Resources\IMessages;
 use DevSpace\Interfaces\Validators\INaturalNumber;
 use DevSpace\Interfaces\MathLib\IPrimes;
@@ -9,9 +10,9 @@ use DevSpace\Interfaces\MathLib\ITimesTable;
 use DevSpace\Test\Core\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 
-class PrimesGeneratorTest extends TestCase
+class PrimesTableTest extends TestCase
 {
-    /** @var  PrimesGenerator */
+    /** @var  IPrimesTable */
     private $subject;
 
     /** @var  IMessages | PHPUnit_Framework_MockObject_MockObject */
@@ -31,7 +32,7 @@ class PrimesGeneratorTest extends TestCase
         $this->mockSizeValidator = $this->getMock(INaturalNumber::class);
         $this->mockPrimesGenerator = $this->getMock(IPrimes::class);
         $this->mockTimesTableGenerator = $this->getMock(ITimesTable::class);
-        $this->subject = new PrimesGenerator(
+        $this->subject = new PrimesTable(
             $this->mockMessages,
             $this->mockSizeValidator,
             $this->mockPrimesGenerator,
@@ -39,15 +40,15 @@ class PrimesGeneratorTest extends TestCase
         );
     }
 
-    public function testRunDisplaysOutputMessagesIfSizeArgInValid()
+    public function testGetPrimesTableDisplaysOutputMessagesIfSizeArgInValid()
     {
         $expectedResult = 'Help';
         $this->expectSizeArgValidated(false);
         $this->expectToGetAMessage('MSG_PRMGEN_INVALID_INPUT', $expectedResult);
-        $this->assertEquals($expectedResult, $this->subject->run(-1));
+        $this->assertEquals($expectedResult, $this->subject->getPrimesTable(-1));
     }
 
-    public function testRunWillGeneratePrimes()
+    public function testGetPrimesTableWillGeneratePrimes()
     {
         $primes = array('i am a fake array of n prime numbers');
         $timesTable = array('i am a times table of given primes');
@@ -55,7 +56,7 @@ class PrimesGeneratorTest extends TestCase
         $this->expectSizeArgValidated(true);
         $this->expectGeneratingPrimes($size, $primes);
         $this->expectToGetTimesTableOfPrimes($primes, $timesTable);
-        $this->assertEquals($timesTable, $this->subject->run($size));
+        $this->assertEquals($timesTable, $this->subject->getPrimesTable($size));
     }
 
     private function expectToGetTimesTableOfPrimes($arg, $result)
