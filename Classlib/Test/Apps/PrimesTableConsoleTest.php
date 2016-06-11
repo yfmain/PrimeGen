@@ -4,6 +4,7 @@ namespace DevSpace\Test\Apps;
 use DevSpace\Apps\PrimesTableConsole;
 use DevSpace\Interfaces\Resources\IMessages;
 use DevSpace\Interfaces\Validators\INaturalNumber;
+use DevSpace\Interfaces\Services\IOutput;
 use DevSpace\Test\Core\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 
@@ -16,16 +17,20 @@ class PrimesTableConsoleTest extends TestCase
     private $mockMessages;
 
     /** @var  INaturalNumber | PHPUnit_Framework_MockObject_MockObject */
-
     private $mockSizeValidator;
+
+    /** @var  IOutput | PHPUnit_Framework_MockObject_MockObject */
+    private $mockOutputService;
 
     public function setUp()
     {
         $this->mockMessages = $this->getMock(IMessages::class);
         $this->mockSizeValidator = $this->getMock(INaturalNumber::class);
+        $this->mockOutputService = $this->getMock(IOutput::class);
         $this->subject = new PrimesTableConsole(
             $this->mockMessages,
-            $this->mockSizeValidator
+            $this->mockSizeValidator,
+            $this->mockOutputService
         );
     }
 
@@ -34,7 +39,16 @@ class PrimesTableConsoleTest extends TestCase
         $expectedResult = 'Help';
         $this->expectSizeArgValidated(false);
         $this->expectToGetAMessage('MSG_PRMGEN_INVALID_INPUT', $expectedResult);
-        $this->assertEquals($expectedResult, $this->subject->run(-1));
+        $this->expectConsoleToDisplayMessage($expectedResult);
+        $this->subject->run(-1);
+    }
+
+    private function expectConsoleToDisplayMessage($arg)
+    {
+        $this->mockOutputService
+            ->expects($this->once())
+            ->method('display')
+            ->with();
     }
 
     private function expectSizeArgValidated($expected)
