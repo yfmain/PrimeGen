@@ -9,27 +9,19 @@ class Primes
         $count = 1;
         $i = 3;
         while ($count < $n) {
-            $sqrtOfN = floor(sqrt($i));
+            $bound = sqrt($i);
             $prime = 3;
             foreach ($this->primes as $prime) {
-                if ($prime > $sqrtOfN) break;
+                if ($prime > $bound) break;
                 if ($i % $prime == 0) break;
             }
-            if ($prime > $sqrtOfN) {
-                $this->primes[$count++] = $i;
+            if ($prime > $bound) {
+                $this->primes[] = $i;
+                $count++;
             }
             $i += 2;
         }
         return $this->primes[$n - 1];
     }
 
-    private function isPrime($n)
-    {
-        $sqrtOfN = floor(sqrt($n));
-        foreach ($this->primes as $prime) {
-            if ($prime > $sqrtOfN) break;
-            if ($n % $prime == 0) return false;
-        }
-        return true;
-    }
 }
