@@ -18,4 +18,9 @@ class PrimesTest extends TestCase
     {
         $this->assertEquals(2, $this->subject->getTheNthPrime(1));
     }
+
+    public function testGetNthPrimeReturnThreeForTheSecond()
+    {
+        $this->assertEquals(3, $this->subject->getTheNthPrime(2));
+    }
 }
