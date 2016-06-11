@@ -5,6 +5,7 @@ use DevSpace\MainApp\PrimesGenerator;
 use DevSpace\Interfaces\Resources\IMessages;
 use DevSpace\Interfaces\Validators\INaturalNumber;
 use DevSpace\Interfaces\MathLib\IPrimes;
+use DevSpace\Interfaces\MathLib\ITimesTable;
 use DevSpace\Test\Core\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 
@@ -20,16 +21,21 @@ class PrimesGeneratorTest extends TestCase
     private $mockSizeValidator;
 
     /** @var  IPrimes | PHPUnit_Framework_MockObject_MockObject */
-    private $mockPrimes;
+    private $mockPrimesGenerator;
+
+    /** @var  ITimesTable | PHPUnit_Framework_MockObject_MockObject */
+    private $mockTimesTableGenerator;
 
     public function setUp() {
         $this->mockMessages = $this->getMock(IMessages::class);
         $this->mockSizeValidator = $this->getMock(INaturalNumber::class);
-        $this->mockPrimes = $this->getMock(IPrimes::class);
+        $this->mockPrimesGenerator = $this->getMock(IPrimes::class);
+        $this->mockTimesTableGenerator = $this->getMock(ITimesTable::class);
         $this->subject = new PrimesGenerator(
             $this->mockMessages,
             $this->mockSizeValidator,
-            $this->mockPrimes
+            $this->mockPrimesGenerator,
+            $this->mockTimesTableGenerator
         );
     }
 
@@ -43,16 +49,27 @@ class PrimesGeneratorTest extends TestCase
 
     public function testRunWillGeneratePrimes()
     {
-        $expectedResult = array('i am a fake array of n prime numbers');
+        $primes = array('i am a fake array of n prime numbers');
+        $timesTable = array('i am a times table of given primes');
         $size = 4;
         $this->expectSizeArgValidated(true);
-        $this->expectGeneratingPrimes($size, $expectedResult);
-        $this->assertEquals($expectedResult, $this->subject->run($size));
+        $this->expectGeneratingPrimes($size, $primes);
+        $this->expectToGetTimesTableOfPrimes($primes, $timesTable);
+        $this->assertEquals($timesTable, $this->subject->run($size));
+    }
+
+    private function expectToGetTimesTableOfPrimes($arg, $result)
+    {
+        $this->mockTimesTableGenerator
+            ->expects($this->once())
+            ->method('getTable')
+            ->with($arg)
+            ->willReturn($result);
     }
 
     private function expectGeneratingPrimes($arg, $result)
     {
-        $this->mockPrimes
+        $this->mockPrimesGenerator
             ->expects($this->once())
             ->method('primes')
             ->with($arg)
