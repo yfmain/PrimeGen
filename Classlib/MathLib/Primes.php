@@ -5,7 +5,7 @@ class Primes
 {
     public function primes($n)
     {
-        if (!$n)
+        if ($n<1)
         {
             return array();
         }

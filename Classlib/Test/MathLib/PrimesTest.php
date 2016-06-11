@@ -55,4 +55,9 @@ class PrimesTest extends TestCase
     {
         $this->assertEquals(array(), $this->subject->primes(null));
     }
+
+    public function testPrimesReturnsEmptyWithNegativeInput()
+    {
+        $this->assertEquals(array(), $this->subject->primes(-1));
+    }
 }
