@@ -3,25 +3,26 @@ namespace DevSpace\MathLib;
 
 class Primes
 {
+    private $primes = [2];
     public function getTheNthPrime($n)
     {
-        $primes = [2];
         $count = 1;
         $i = 3;
         while ($count < $n) {
             if ($this->isPrime($i)) {
-                $primes[$count++] = $i;
+                $this->primes[$count++] = $i;
             }
             $i += 2;
         }
-        return $primes[$n - 1];
+        return $this->primes[$n - 1];
     }
 
     private function isPrime($n)
     {
         $sqrtOfN = floor(sqrt($n));
-        for ($i = 2; $i <= $sqrtOfN; $i++) {
-            if ($n % $i == 0) return false;
+        foreach ($this->primes as $prime) {
+            if ($prime > $sqrtOfN) break;
+            if ($n % $prime == 0) return false;
         }
         return true;
     }
