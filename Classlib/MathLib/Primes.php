@@ -5,7 +5,8 @@ class Primes
 {
     public function getTheNthPrime($n)
     {
-        if ($n <3) return $n + 1;
-        return 5;
+
+        if ($n < 3) return $n + 1;
+        return 2 * $n - 1;
     }
 }
