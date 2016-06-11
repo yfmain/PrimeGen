@@ -7,11 +7,12 @@ class Primes
     {
         $primes = [];
         $count = 0;
-        for ($i = 2; $i < $n + 100; $i++) {
+        $i = 2;
+        while ($count < $n) {
             if ($this->isPrime($i)) {
-                $primes[] = $i;
-                if (++$count == $n) break;
+                $primes[$count++] = $i;
             }
+            $i++;
         }
         return $primes[$n - 1];
     }
