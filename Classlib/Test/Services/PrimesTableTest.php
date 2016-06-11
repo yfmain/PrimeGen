@@ -2,7 +2,6 @@
 namespace DevSpace\Test\Services;
 
 use DevSpace\Services\PrimesTable;
-use DevSpace\Interfaces\Services\IPrimesTable;
 use DevSpace\Interfaces\Resources\IMessages;
 use DevSpace\Interfaces\Validators\INaturalNumber;
 use DevSpace\Interfaces\MathLib\IPrimes;
@@ -12,7 +11,7 @@ use PHPUnit_Framework_MockObject_MockObject;
 
 class PrimesTableTest extends TestCase
 {
-    /** @var  IPrimesTable */
+    /** @var  PrimesTable */
     private $subject;
 
     /** @var  IMessages | PHPUnit_Framework_MockObject_MockObject */
@@ -40,6 +39,11 @@ class PrimesTableTest extends TestCase
         );
     }
 
+    public function testSubjectIsInstanceOfIPrimesTable()
+    {
+        $this->assertInstanceOf('DevSpace\Interfaces\Services\IPrimesTable', $this->subject);
+    }
+    
     public function testGetPrimesTableDisplaysOutputMessagesIfSizeArgInValid()
     {
         $expectedResult = 'Help';
