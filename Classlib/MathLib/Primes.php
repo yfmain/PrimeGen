@@ -5,6 +5,10 @@ class Primes
 {
     public function primes($n)
     {
+        if (!$n)
+        {
+            return array();
+        }
         $primes = [2];
         $count = 1;
         $i = 3;

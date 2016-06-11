@@ -50,4 +50,9 @@ class PrimesTest extends TestCase
             $this->subject->primes(5)
         );
     }
+
+    public function testPrimesReturnsEmptyWithNullInput()
+    {
+        $this->assertEquals(array(), $this->subject->primes(null));
+    }
 }
