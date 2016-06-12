@@ -20,7 +20,7 @@ class TimesTableTest extends TestCase
     }
 
     /**
-     * @param mixed $input
+     * @param array $input
      * @dataProvider InvalidArgsProvider
      */
     public function testGetTableReturnsEmptyWithInvalidInput($input)
@@ -35,4 +35,28 @@ class TimesTableTest extends TestCase
             'array with non-numeric elements is invalid' => array(array(2, 's'))
         );
     }
+
+    /**
+     * @param array $input
+     * @param array $expected
+     * @dataProvider TimesTableProvider
+     */
+    public function testGetTableReturnsCorrectResult($input, $expected)
+    {
+        $this->assertEquals($expected, $this->subject->getTable($input));
+    }
+
+    public function TimesTableProvider()
+    {
+        return array(
+            'input array has only 1 element of zero' => array(
+                array(0),
+                array(
+                    0 => array( 0 => 0 )
+                )
+            ),
+
+        );
+    }
+
 }
