@@ -47,7 +47,7 @@ class TableConsoleOutputTest extends TestCase
         $this->mockConsoleTable
             ->expects($this->once())
             ->method('addData')
-            ->with($keys, 1, 0);
+            ->with($data, 1, 0);
         $this->mockConsoleTable
             ->expects($this->once())
             ->method('getTable')
