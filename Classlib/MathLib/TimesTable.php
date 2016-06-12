@@ -10,7 +10,9 @@ class TimesTable implements ITimesTable
         if (!$this->isValid($input)) return array();
         $result = array_fill_keys($input, array_combine($input, $input));
         foreach ($result as $key => &$item) {
-            $item[$key] *= $item[$key];
+            array_walk($item, function(&$v, $k, $f) {
+                $v = $k * $f;
+            }, $key);
         }
         return $result;
     }
