@@ -4,8 +4,8 @@ namespace DevSpace\Interfaces\Resources;
 interface IMessages
 {
     /**
-     * @param string $msgId
-     * @return string
+     * @param int $msgId
+     * @return string | null
      */
     public function getMessage($msgId);
 }

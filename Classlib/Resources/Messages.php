@@ -12,5 +12,6 @@ class Messages implements IMessages
         if ($msgId == self::MSG_PRIMES_TABLE_CONSOLE_HELP) {
             return Application::MSG_MSG_PRIMES_TABLE_CONSOLE_HELP;
         }
+        return null;
     }
 }

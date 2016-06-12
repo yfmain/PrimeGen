@@ -22,4 +22,11 @@ class MessagesTest extends TestCase
             $this->subject->getMessage(Messages::MSG_PRIMES_TABLE_CONSOLE_HELP)
         );
     }
+
+    public function testGetMessageReturnsNullWithNonsenseInput()
+    {
+        $this->assertNull(
+            $this->subject->getMessage(2)
+        );
+    }
 }
