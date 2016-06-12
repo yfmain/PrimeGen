@@ -61,6 +61,12 @@ class TimesTableTest extends TestCase
                     1 => array( 1 => 1 )
                 )
             ),
+            'input array has only 1 element of 2' => array(
+                array(2),
+                array(
+                    2 => array( 2 => 4 )
+                )
+            ),
 
         );
     }

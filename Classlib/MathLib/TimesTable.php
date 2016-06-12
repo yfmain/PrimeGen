@@ -8,9 +8,11 @@ class TimesTable implements ITimesTable
     public function getTable(array $input)
     {
         if (!$this->isValid($input)) return array();
-        $inputWithKeys = array_combine($input, $input);
-
-        return array_fill_keys($input, $inputWithKeys);
+        $result = array_fill_keys($input, array_combine($input, $input));
+        foreach ($result as $key => &$item) {
+            $item[$key] *= $item[$key];
+        }
+        return $result;
     }
     
     private function isValid(array $input)
