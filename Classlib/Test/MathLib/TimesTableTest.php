@@ -49,10 +49,16 @@ class TimesTableTest extends TestCase
     public function TimesTableProvider()
     {
         return array(
-            'input array has only 1 element of zero' => array(
+            'input array has only 1 element of 0' => array(
                 array(0),
                 array(
                     0 => array( 0 => 0 )
+                )
+            ),
+            'input array has only 1 element of 1' => array(
+                array(1),
+                array(
+                    1 => array( 1 => 1 )
                 )
             ),
 
