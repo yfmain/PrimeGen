@@ -60,6 +60,14 @@ echo !$isNaive ? "Prime Times Table - Incremental Sieve of Eratosthenes:" : "Pri
 echo "\r\n";
 echo "-------------------------------------------------------------------";
 echo "\r\n\r\n";
+if ($size >= 1e6) {
+    echo "For size over 15 millions, it may crash due to the limited memory allocated to it.";
+    echo "\r\n";
+    echo "For every million prime numbers, it takes roughly 5 - 10 seconds to execute..";
+    echo "\r\n";
+    echo "Please wait ...";
+    echo "\r\n\r\n";
+}
 $memoryUsage = memory_get_usage();
 $time_start = microtime(true);
 echo $Primes->run($size);
