@@ -5,7 +5,7 @@ use DevSpace\Apps\PrimesTableConsole;
 use DevSpace\Resources\Messages;
 use DevSpace\Interfaces\Resources\IMessages;
 use DevSpace\Interfaces\Validators\INaturalNumber;
-use DevSpace\Interfaces\Services\IConsole;
+use DevSpace\Interfaces\Services\ITableConsoleOutput;
 use DevSpace\Interfaces\Services\IPrimesTable;
 use DevSpace\Test\Core\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
@@ -21,7 +21,7 @@ class PrimesTableConsoleTest extends TestCase
     /** @var  INaturalNumber | PHPUnit_Framework_MockObject_MockObject */
     private $mockSizeValidator;
 
-    /** @var  IConsole | PHPUnit_Framework_MockObject_MockObject */
+    /** @var  ITableConsoleOutput | PHPUnit_Framework_MockObject_MockObject */
     private $mockOutputService;
 
     /** @var  IPrimesTable | PHPUnit_Framework_MockObject_MockObject */
@@ -31,7 +31,7 @@ class PrimesTableConsoleTest extends TestCase
     {
         $this->mockMessages = $this->getMock(IMessages::class);
         $this->mockSizeValidator = $this->getMock(INaturalNumber::class);
-        $this->mockOutputService = $this->getMock(IConsole::class);
+        $this->mockOutputService = $this->getMock(ITableConsoleOutput::class);
         $this->mockPrimesTableService = $this->getMock(IPrimesTable::class);
         $this->subject = new PrimesTableConsole(
             $this->mockMessages,
@@ -48,18 +48,18 @@ class PrimesTableConsoleTest extends TestCase
         $msgType = Messages::MSG_PRIMES_TABLE_CONSOLE_HELP;
         $this->expectSizeArgValidated($size, false);
         $this->expectToGetAMessage($msgType, $expectedResult);
-        $this->expectConsoleToDisplayMessage($expectedResult);
-        $this->subject->run($size);
+        $this->assertEquals($expectedResult, $this->subject->run($size));
     }
 
     public function testRunDisplaysResultsIfSizeArgIsValid()
     {
         $size = 3;
-        $expectedResult = array('i am a result table');
+        $primesTable = array('i am a result table');
+        $expectedResult = array('i am an output string');
         $this->expectSizeArgValidated($size, true);
-        $this->expectToGetPrimesTable($size, $expectedResult);
-        $this->expectConsoleToDisplayResult($expectedResult);
-        $this->subject->run($size);
+        $this->expectToGetPrimesTable($size, $primesTable);
+        $this->expectConsoleToDisplayResult($primesTable, $expectedResult);
+        $this->assertEquals($expectedResult, $this->subject->run($size));
     }
 
     private function expectToGetPrimesTable($arg, $result)
@@ -71,20 +71,13 @@ class PrimesTableConsoleTest extends TestCase
             ->willReturn($result);
     }
 
-    private function expectConsoleToDisplayResult($arg)
+    private function expectConsoleToDisplayResult($arg, $result)
     {
         $this->mockOutputService
             ->expects($this->once())
-            ->method('displayArray')
-            ->with($arg);
-    }
-
-    private function expectConsoleToDisplayMessage($arg)
-    {
-        $this->mockOutputService
-            ->expects($this->once())
-            ->method('display')
-            ->with($arg);
+            ->method('outputArray')
+            ->with($arg)
+            ->willReturn($result);
     }
 
     private function expectSizeArgValidated($arg, $expected)

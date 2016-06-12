@@ -3,7 +3,7 @@ namespace DevSpace\Apps;
 
 use DevSpace\Interfaces\Resources\IMessages;
 use DevSpace\Interfaces\Validators\INaturalNumber;
-use DevSpace\Interfaces\Services\IConsole;
+use DevSpace\Interfaces\Services\ITableConsoleOutput;
 use DevSpace\Interfaces\Services\IPrimesTable;
 use DevSpace\Resources\Messages;
 
@@ -15,7 +15,7 @@ class PrimesTableConsole
     /** @var  INaturalNumber */
     private $sizeValidator;
 
-    /** @var  IConsole */
+    /** @var  ITableConsoleOutput */
     private $outputService;
 
     /** @var  IPrimesTable */
@@ -24,7 +24,7 @@ class PrimesTableConsole
     public function __construct(
         IMessages $messages,
         INaturalNumber $sizeValidator,
-        IConsole $outputService,
+        ITableConsoleOutput $outputService,
         IPrimesTable $primesTableService
     )
     {
@@ -37,11 +37,9 @@ class PrimesTableConsole
     public function run($size)
     {
         if (!$this->sizeValidator->validate($size)) {
-            $this->outputService->display(
-                $this->messages->getMessage(Messages::MSG_PRIMES_TABLE_CONSOLE_HELP)
-            );
+            return $this->messages->getMessage(Messages::MSG_PRIMES_TABLE_CONSOLE_HELP);
         }
-        $this->outputService->displayArray(
+        return $this->outputService->outputArray(
             $this->primesTableService->getPrimesTable($size)
         );
     }
