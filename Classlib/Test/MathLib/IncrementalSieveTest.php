@@ -1,17 +1,17 @@
 <?php
 namespace DevSpace\Test\MathLib;
 
-use DevSpace\MathLib\NaivePrimes;
+use DevSpace\MathLib\IncrementalSieve;
 use DevSpace\Test\Core\TestCase;
 
-class PrimesTest extends TestCase
+class IncrementalSieveTest extends TestCase
 {
-    /** @var  NaivePrimes */
+    /** @var  IncrementalSieve */
     private $subject;
-    
+
     public function setUp()
     {
-        $this->subject = new NaivePrimes();
+        $this->subject = new IncrementalSieve();
     }
 
     public function testPrimesIsInstanceOfIPrimes()
@@ -41,13 +41,13 @@ class PrimesTest extends TestCase
             'the 10th prime is 29'    =>  array(10, 29),
             'the 100th prime is 541'            => array(100, 541),
             'the 1Kth  prime is 7,919'          => array(1e3, 7919),
-//            'the 10Kth prime is 104,729'        => array(1e4, 104729),
-//            'the 100Kth prime is 1,299,709'     => array(1e5, 1299709),
-//            'the 1Mth prime is 15,485,863'      => array(1e6, 15485863),
-//            'the 10Mth prime is 179,424,673'    => array(1e7, 179424673)
+            'the 10Kth prime is 104,729'        => array(1e4, 104729),
+            'the 100Kth prime is 1,299,709'     => array(1e5, 1299709),
+//            'the 1Mth prime is 15,485,863'      => array(1e6, 15485863), //takes 15 seconds to run
+//            'the 10Mth prime is 179,424,673'    => array(1e7, 179424673) //takes 2.5 minutes to run
         );
     }
-    
+
     public function testPrimesReturnsNPrimeNumbers()
     {
         $this->assertEquals(
@@ -75,4 +75,5 @@ class PrimesTest extends TestCase
             'Argument strings are invalid'    =>  array('number')
         );
     }
+
 }

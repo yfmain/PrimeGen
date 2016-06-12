@@ -3,7 +3,7 @@ namespace DevSpace\MathLib;
 
 use DevSpace\Interfaces\MathLib\IPrimes;
 
-class Primes implements IPrimes
+class NaivePrimes implements IPrimes
 {
     public function primes($size)
     {
