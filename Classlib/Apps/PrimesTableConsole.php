@@ -5,6 +5,7 @@ use DevSpace\Interfaces\Resources\IMessages;
 use DevSpace\Interfaces\Validators\INaturalNumber;
 use DevSpace\Interfaces\Services\IConsole;
 use DevSpace\Interfaces\Services\IPrimesTable;
+use DevSpace\Resources\Messages;
 
 class PrimesTableConsole
 {
@@ -37,7 +38,7 @@ class PrimesTableConsole
     {
         if (!$this->sizeValidator->validate($size)) {
             $this->outputService->display(
-                $this->messages->getMessage('MSG_PRMGEN_INVALID_INPUT')
+                $this->messages->getMessage(Messages::MSG_PRIMES_TABLE_CONSOLE_HELP)
             );
         }
         $this->outputService->displayArray(

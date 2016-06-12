@@ -2,6 +2,7 @@
 namespace DevSpace\Test\Apps;
 
 use DevSpace\Apps\PrimesTableConsole;
+use DevSpace\Resources\Messages;
 use DevSpace\Interfaces\Resources\IMessages;
 use DevSpace\Interfaces\Validators\INaturalNumber;
 use DevSpace\Interfaces\Services\IConsole;
@@ -44,7 +45,7 @@ class PrimesTableConsoleTest extends TestCase
     {
         $size = -1;
         $expectedResult = 'Help';
-        $msgType = 'MSG_PRMGEN_INVALID_INPUT';
+        $msgType = Messages::MSG_PRIMES_TABLE_CONSOLE_HELP;
         $this->expectSizeArgValidated($size, false);
         $this->expectToGetAMessage($msgType, $expectedResult);
         $this->expectConsoleToDisplayMessage($expectedResult);
