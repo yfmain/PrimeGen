@@ -13,6 +13,8 @@ class PrimesTable implements IPrimesTable
     /** @var  ITimesTable */
     private $timesTableGenerator;
 
+    const MAX_DISPLAYABLE_COLUMNS = 12;
+
     public function __construct(
         IPrimes $primesGenerator,
         ITimesTable $timesTableGenerator
@@ -24,8 +26,20 @@ class PrimesTable implements IPrimesTable
 
     public function getPrimesTable($size = null)
     {
+        $primesToOutput = $this->primesGenerator->primes($size);
+
+        //TODO: do output paging..., move paging logic out of here.
+        //this is only a temporary hiking, this need to be replace by a proper paging solution
+        $max = self::MAX_DISPLAYABLE_COLUMNS;
+        if ($size > $max) {
+            $primesToOutput = array_merge(
+                array_slice($primesToOutput, 0, floor($max/2)),
+                array_slice($primesToOutput, -floor($max/2))
+            );
+        }
+
         return $this->timesTableGenerator->getTable(
-            $this->primesGenerator->primes($size)
+            $primesToOutput
         );
     }
 }

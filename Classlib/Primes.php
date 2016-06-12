@@ -48,8 +48,23 @@ $outputService = new TableConsoleOutput(new Console_Table(CONSOLE_TABLE_ALIGN_RI
 
 $Primes = new PrimesTableConsole($messages, $validator, $outputService, $primesTableService);
 
-echo "\r\n\r\n";
+function convert($size)
+{
+    $unit=array('b','kb','mb','gb','tb','pb');
+    return @round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i];
+}
+
+echo "-------------------------------------------------------------------";
+echo "\r\n";
 echo !$isNaive ? "Prime Times Table - Incremental Sieve of Eratosthenes:" : "Prime Times Table - Naive Version:";
+echo "\r\n";
+echo "-------------------------------------------------------------------";
 echo "\r\n\r\n";
+$memoryUsage = memory_get_usage();
+$time_start = microtime(true);
 echo $Primes->run($size);
-echo "\r\n\r\n";
+$time_end = microtime(true);
+$time = $time_end - $time_start;
+$memoryUsage = convert(memory_get_usage() - $memoryUsage);
+echo "\r\n";
+echo "Elapsed time: $time seconds. Memory usage: $memoryUsage.\n";
