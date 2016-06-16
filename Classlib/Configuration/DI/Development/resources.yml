@@ -1,0 +1,3 @@
+services:
+  DevSpace\Resources\Messages:
+    class: DevSpace\Resources\Messages

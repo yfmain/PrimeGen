@@ -1,0 +1,3 @@
+services:
+  DevSpace\Validators\NaturalNumber:
+    class: DevSpace\Validators\NaturalNumber

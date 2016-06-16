@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-use DevSpace\Apps\PrimesTableConsole;
+use DevSpace\Controllers\PrimesTableConsole;
 use DevSpace\Resources\Messages;
 use DevSpace\Validators\NaturalNumber;
 use DevSpace\MathLib\NaivePrimes;

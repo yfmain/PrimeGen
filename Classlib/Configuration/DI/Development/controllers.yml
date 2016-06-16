@@ -1,0 +1,8 @@
+services:
+  DevSpace\Controllers\PrimesTableConsole:
+    class: DevSpace\Controllers\PrimesTableConsole
+    arguments:
+      - '@DevSpace\Resources\Messages'
+      - '@DevSpace\Validators\NaturalNumber'
+      - '@DevSpace\Services\TableConsoleOutput'
+      - '@DevSpace\Services\PrimesTable'

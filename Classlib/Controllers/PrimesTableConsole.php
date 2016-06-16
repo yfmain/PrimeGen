@@ -1,5 +1,5 @@
 <?php
-namespace DevSpace\Apps;
+namespace DevSpace\Controllers;
 
 use DevSpace\Interfaces\Resources\IMessages;
 use DevSpace\Interfaces\Validators\INaturalNumber;

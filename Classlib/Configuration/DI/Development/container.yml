@@ -1,0 +1,10 @@
+imports:
+    - { resource: "services.yml" }
+    - { resource: "mathlib.yml" }
+    - { resource: "resources.yml" }
+    - { resource: "validators.yml" }
+    - { resource: "controllers.yml" }
+
+services:
+  DevSpace\DI\Container:
+    class: DevSpace\DI\Container

@@ -1,0 +1,10 @@
+services:
+  DevSpace\Services\PrimesTable:
+    class: DevSpace\Services\PrimesTable
+    arguments: [ '@DevSpace\MathLib\Primes' , '@DevSpace\MathLib\ITimesTable' ]
+
+  DevSpace\Services\TableConsoleOutput:
+    class: DevSpace\Services\TableConsoleOutput
+    arguments: [ '@Console_Table' ]
+
+

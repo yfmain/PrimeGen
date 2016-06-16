@@ -1,7 +1,7 @@
 <?php
-namespace DevSpace\Test\Apps;
+namespace DevSpace\Test\Controllers;
 
-use DevSpace\Apps\PrimesTableConsole;
+use DevSpace\Controllers\PrimesTableConsole;
 use DevSpace\Resources\Messages;
 use DevSpace\Interfaces\Resources\IMessages;
 use DevSpace\Interfaces\Validators\INaturalNumber;

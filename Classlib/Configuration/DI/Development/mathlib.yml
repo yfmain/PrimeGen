@@ -1,0 +1,11 @@
+services:
+  DevSpace\MathLib\NaviePrimes:
+    class: DevSpace\MathLib\NaviePrimes
+
+  DevSpace\MathLib\IncrementalSieve:
+    class: DevSpace\MathLib\IncrementalSieve
+
+  DevSpace\MathLib\TimesTable:
+    class: DevSpace\MathLib\TimesTable
+
+
