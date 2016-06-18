@@ -1,9 +1,11 @@
 imports:
+    - { resource: "vendor.yml" }
     - { resource: "services.yml" }
     - { resource: "mathlib.yml" }
     - { resource: "resources.yml" }
     - { resource: "validators.yml" }
     - { resource: "controllers.yml" }
+    - { resource: "factories.yml" }
 
 services:
   DevSpace\DI\Container:

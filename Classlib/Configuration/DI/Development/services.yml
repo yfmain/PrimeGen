@@ -1,7 +1,7 @@
 services:
   DevSpace\Services\PrimesTable:
     class: DevSpace\Services\PrimesTable
-    arguments: [ '@DevSpace\MathLib\Primes' , '@DevSpace\MathLib\ITimesTable' ]
+    arguments: [ '@DevSpace\MathLib\IncrementalSieve' , '@DevSpace\MathLib\TimesTable' ]
 
   DevSpace\Services\TableConsoleOutput:
     class: DevSpace\Services\TableConsoleOutput

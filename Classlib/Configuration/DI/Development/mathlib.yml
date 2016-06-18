@@ -1,11 +1,22 @@
+parameters:
+  primes.algorithm: IncrementalSieve
+
 services:
-  DevSpace\MathLib\NaviePrimes:
-    class: DevSpace\MathLib\NaviePrimes
+  DevSpace\MathLib\NaivePrimes:
+    class: DevSpace\MathLib\NaivePrimes
+  NaivePrimes:
+    alias: DevSpace\MathLib\NaivePrimes
 
   DevSpace\MathLib\IncrementalSieve:
     class: DevSpace\MathLib\IncrementalSieve
+  IncrementalSieve:
+    alias: DevSpace\MathLib\IncrementalSieve
 
   DevSpace\MathLib\TimesTable:
     class: DevSpace\MathLib\TimesTable
 
-
+  PrimesGenerator:
+    class: DevSpace\MathLib\NaivePrimes
+    factory: ["@PrimesGenerator.factory", get]
+    arguments:
+      - '%primes.algorithm%'
