@@ -1,14 +1,8 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-use DevSpace\Controllers\PrimesTableConsole;
-use DevSpace\Resources\Messages;
 use DevSpace\Validators\NaturalNumber;
-use DevSpace\MathLib\NaivePrimes;
-use DevSpace\MathLib\IncrementalSieve;
-use DevSpace\MathLib\TimesTable;
-use DevSpace\Services\PrimesTable;
-use DevSpace\Services\TableConsoleOutput;
+use DevSpace\DI\Container;
 
 $shortopts = "";
 $shortopts .= "s:"; // Size
@@ -40,13 +34,11 @@ if (!$validator->validate($size)) {
     return;
 }
 
-$messages = new Messages();
-$timesTableGenerator = new TimesTable();
-$primesGenerator = $isNaive ? new NaivePrimes() : new IncrementalSieve();
-$primesTableService = new PrimesTable($primesGenerator, $timesTableGenerator);
-$outputService = new TableConsoleOutput(new Console_Table(CONSOLE_TABLE_ALIGN_RIGHT));
-
-$Primes = new PrimesTableConsole($messages, $validator, $outputService, $primesTableService);
+$container = new Container();
+if ($isNaive) {
+    $container->getContainer()->setParameter('primes.algorithm', 'NaivePrimes');
+}
+$Primes = $container->get('DevSpace\Controllers\PrimesTableConsole');
 
 function convert($size)
 {
