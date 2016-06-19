@@ -13,24 +13,15 @@ $isNaive = isset($options['n']);
 
 $validator = new NaturalNumber();
 if (!$validator->validate($size)) {
-    echo "-------------------------------------------------------------------------------";
-    echo "\r\n";
-    echo "The Primes Number Generator...";
-    echo "\r\n";
-    echo "-------------------------------------------------------------------------------";
-    echo "\r\n";
-    echo "  Input Arguments:";
-    echo "\r\n";
-    echo "      Size of primes table, as the first argument is always required.";
-    echo "\r\n";
-    echo "      -n optional, indicating usage of the naive version of primes algorithm.";
-    echo "\r\n\r\n";
-    echo "  Example:";
-    echo "\r\n";
-    echo "      php Primes.php 20 -n";
-    echo "\r\n";
-    echo "-------------------------------------------------------------------------------";
-    echo "\r\n";
+    echo "-------------------------------------------------------------------------------\r\n";
+    echo "The Primes Number Generator...\r\n";
+    echo "-------------------------------------------------------------------------------\r\n";
+    echo "  Input Arguments:\r\n";
+    echo "      Size of primes table, as the first argument is always required.\r\n";
+    echo "      -n optional, indicating usage of the naive version of primes algorithm.\r\n\r\n";
+    echo "  Example:\r\n";
+    echo "      php Primes.php 20 -n\r\n";
+    echo "-------------------------------------------------------------------------------\r\n";
     return;
 }
 
@@ -40,11 +31,6 @@ if ($isNaive) {
 }
 $Primes = $container->get('DevSpace\Controllers\PrimesTableConsole');
 
-function convert($size)
-{
-    $unit=array('b','kb','mb','gb','tb','pb');
-    return @round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i];
-}
 
 echo "-------------------------------------------------------------------";
 echo "\r\n";
@@ -60,11 +46,13 @@ if ($size >= 1e6) {
     echo "Please wait ...";
     echo "\r\n\r\n";
 }
-$memoryUsage = memory_get_usage();
-$time_start = microtime(true);
+
+/** @var \DevSpace\Utils\DevStopWatch $stopwatch */
+$stopwatch = $container->get('DevStopwatch');
+$stopwatch->start('PrimesGenerator');
 echo $Primes->run($size);
-$time_end = microtime(true);
-$time = $time_end - $time_start;
-$memoryUsage = convert(memory_get_usage() - $memoryUsage);
+$stopwatch->stop('PrimesGenerator');
 echo "\r\n";
-echo "Elapsed time: $time seconds. Memory usage: $memoryUsage.\n";
+echo $stopwatch->showResult();
+echo "\r\n";
+

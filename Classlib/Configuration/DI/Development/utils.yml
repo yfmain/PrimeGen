@@ -1,0 +1,4 @@
+services:
+  DevStopwatch:
+    class: DevSpace\Utils\DevStopWatch
+    arguments: ['@SymfonyStopwatch']

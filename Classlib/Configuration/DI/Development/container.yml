@@ -6,6 +6,7 @@ imports:
     - { resource: "validators.yml" }
     - { resource: "controllers.yml" }
     - { resource: "factories.yml" }
+    - { resource: "utils.yml" }
 
 services:
   DevSpace\DI\Container:

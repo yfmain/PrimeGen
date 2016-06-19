@@ -1,3 +1,6 @@
 services:
   Console_Table:
     class: Console_Table
+
+  SymfonyStopwatch:
+    class: Symfony\Component\Stopwatch\Stopwatch
