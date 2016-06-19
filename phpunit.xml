@@ -16,6 +16,10 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">Classlib</directory>
+            <exclude>
+                <directory suffix=".php">Classlib/Test</directory>
+                <file>Classlib/Primes.php</file>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>
