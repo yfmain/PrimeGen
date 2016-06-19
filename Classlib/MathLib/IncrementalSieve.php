@@ -21,10 +21,6 @@ class IncrementalSieve implements IPrimes
                 while (isset($composites[$q])) {
                     $q += 2 * $pv;
                 }
-                if ($q == 203897)
-                {
-                    continue;
-                }
                 $composites[$q] = $pv;
                 unset($composites[$p]);
             } else
